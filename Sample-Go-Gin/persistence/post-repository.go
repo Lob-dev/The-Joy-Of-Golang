@@ -22,9 +22,7 @@ func Init() PostRepository {
 		Logger:      logger.Default.LogMode(logger.Info),
 		QueryFields: true,
 	})
-	if error != nil {
-		panic("Connection Failed Database")
-	}
+	util.IsNilThrow(error != nil, "Connection Failed Database")
 
 	database.AutoMigrate(&Post{})
 	return &postRepository{
